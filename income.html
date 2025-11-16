@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Income | Personal Finance Tracker</title>
+  <link rel="stylesheet" href="income.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo-section">
+      <img src="logo.jpg" alt="Logo">
+      <span class="logo-text">Personal Finance Tracker</span>
+    </div>
+
+    <nav class="nav">
+      <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="expenses.html"><i class="fas fa-wallet"></i> Expenses</a>
+      <a href="income.html" class="active"><i class="fas fa-piggy-bank"></i> Income</a>
+      <a href="budget.html"><i class="fas fa-chart-line"></i> Budget</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+      <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <header>
+      <i class="fas fa-bars menu-icon" id="menuToggle"></i>
+      <h3>Income</h3>
+    </header>
+
+    <div class="income-container">
+      <div class="filter-total">
+        <select id="filter">
+          <option value="">All</option>
+          <option value="wallet">Wallet</option>
+          <option value="bank">Bank Account</option>
+        </select>
+        <span class="total">Total: <strong id="total">Nu.0</strong></span>
+      </div>
+
+      <div id="income-list"></div>
+      <button id="add-income">+</button>
+    </div>
+  </div>
+
+  <!-- Add Income Modal -->
+  <div id="income-modal" class="modal">
+    <div class="modal-content">
+      <h2 id="modal-title">ADD NEW INCOME</h2>
+
+      <label>Income Source</label>
+      <input type="text" id="income-source" placeholder="Enter source" />
+
+      <label>Choose Country</label>
+      <select id="income-country">
+        <option value="" disabled selected>Select country</option>
+        <option value="Nu" data-symbol="Nu.">🇧🇹 Bhutan</option>
+        <option value="USD" data-symbol="$">🇺🇸 United States</option>
+        <option value="INR" data-symbol="₹">🇮🇳 India</option>
+        <option value="EUR" data-symbol="€">🇪🇺 Eurozone</option>
+        <option value="GBP" data-symbol="£">🇬🇧 United Kingdom</option>
+      </select>
+
+      <label>Initial Amount</label>
+      <div class="amount-wrapper">
+        <span id="currency-symbol">Nu.</span>
+        <input type="number" id="income-amount" placeholder="Enter amount" />
+      </div>
+
+      <label>Notes</label>
+      <textarea id="income-notes" placeholder="Optional notes..."></textarea>
+
+      <div class="modal-buttons">
+        <button id="cancel-btn">CANCEL</button>
+        <button id="save-btn">ADD</button>
+        <button id="update-btn" style="display: none;">UPDATE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="confirmPopup" class="popup">
+    <div class="popup-content small">
+      <p><strong>Confirm Delete</strong></p>
+      <p>Are you sure you want to delete this<br>income?</p>
+      <div class="buttons">
+        <button onclick="confirmDelete(false)">No</button>
+        <button onclick="confirmDelete(true)">Yes</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="income.js"></script>
+</body>
+</html>
