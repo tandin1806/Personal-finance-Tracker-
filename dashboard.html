@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personal Finance Tracker - Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="logo-section">
+        <img src="logo.jpg" alt="Logo">
+        <span class="logo-text">Personal Finance Tracker</span>
+      </div>
+    
+      <nav class="nav">
+        <a href="dashboard.html" class="active"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="expenses.html"><i class="fas fa-wallet"></i> Expenses</a>
+        <a href="income.html"><i class="fas fa-piggy-bank"></i> Income</a>
+        <a href="budget.html"><i class="fas fa-chart-line"></i> Budget</a>
+      </nav>
+    
+      <div class="sidebar-bottom">
+        <a href="profile.html" class="profile-link"><i class="fas fa-user"></i> Profile</a>
+        <a href="#" class="logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="topbar">
+        <i class="fa fa-bars menu-icon" id="menuToggle"></i>
+        <h1>Dashboard</h1>
+      </header>
+
+      <!-- Budget Summary Card -->
+      <div class="budget-summary-card">
+        <h3>Budget Overview</h3>
+        <div class="budget-stats">
+          <div class="budget-stat">
+            <span class="stat-label">Total Budget</span>
+            <span class="stat-value" id="total-budget">Nu.0.00</span>
+          </div>
+          <div class="budget-stat">
+            <span class="stat-label">Amount Used</span>
+            <span class="stat-value" id="budget-used">Nu.0.00</span>
+          </div>
+          <div class="budget-stat">
+            <span class="stat-label">Remaining</span>
+            <span class="stat-value" id="budget-remaining">Nu.0.00</span>
+          </div>
+          <div class="budget-stat">
+            <span class="stat-label">Active Budgets</span>
+            <span class="stat-value" id="budget-count">0</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="cards">
+        <div class="card summary">
+          <h3>Summary</h3>
+          <p>Balance: <span id="balanceAmount" class="green">Nu. 0</span></p>
+          <p>Income: <span id="incomeAmount" class="green">Nu. 0</span></p>
+          <p>Expense: <span id="expenseAmount" class="red">Nu. 0</span></p>
+          <p>Budget Total: <span id="budgetTotalAmount" class="blue">Nu. 0</span></p>
+          <p>Budget Used: <span id="budgetUsedAmount" class="orange">Nu. 0</span></p>
+        </div>
+        <div class="card chart-card">
+          <h3>Income vs Expense</h3>
+          <div id="donut1Container" class="chart-container">
+            <canvas id="donut1"></canvas>
+            <div id="donut1Empty" class="empty-chart-message">
+              <i class="fas fa-chart-pie"></i>
+              <p>No data available</p>
+              <small>Add income and expenses to see analytics</small>
+            </div>
+          </div>
+        </div>
+        <div class="card chart-card">
+          <h3>Budget Usage</h3>
+          <div id="donut2Container" class="chart-container">
+            <canvas id="donut2"></canvas>
+            <div id="donut2Empty" class="empty-chart-message">
+              <i class="fas fa-chart-pie"></i>
+              <p>No data available</p>
+              <small>Set up budgets to track spending</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="charts">
+        <div class="chart-box">
+          <h3>Last 7 Days</h3>
+          <div class="chart-container">
+            <canvas id="barChart"></canvas>
+            <div id="barChartEmpty" class="empty-chart-message">
+              <i class="fas fa-chart-bar"></i>
+              <p>No recent transactions</p>
+              <small>Add income or expenses to see trends</small>
+            </div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <h3>Balance Trend</h3>
+          <div class="chart-container">
+            <canvas id="lineChart"></canvas>
+            <div id="lineChartEmpty" class="empty-chart-message">
+              <i class="fas fa-chart-line"></i>
+              <p>No balance history</p>
+              <small>Start tracking to see your financial trend</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="budget-section">
+        <div class="section-header">
+          <h3>Active Budgets</h3>
+          <button class="btn-primary" onclick="window.location.href='budget.html'">Manage Budgets</button>
+        </div>
+        <div id="budgetsContainer">
+          <div id="noBudgetsMessage" class="empty-state">
+            <i class="fas fa-wallet"></i>
+            <p>No budgets set up yet</p>
+            <small>Create budgets to track your spending limits</small>
+            <button class="btn-primary" onclick="window.location.href='budget.html'">Create Budget</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Transactions Section -->
+      <section class="recent-transactions">
+        <h3>Recent Transactions</h3>
+        <div id="recentTransactions">
+          <div class="empty-state">
+            <i class="fas fa-exchange-alt"></i>
+            <p>No recent transactions</p>
+            <small>Add income or expenses to see recent activity</small>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Edit Budget Modal -->
+  <div id="editBudgetModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Edit Budget</h2>
+        <button class="close-btn" onclick="closeEditBudgetModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="editBudgetCategory">Category</label>
+        <input type="text" id="editBudgetCategory" placeholder="Enter category">
+        
+        <label for="editBudgetLimit">Budget Limit (Nu.)</label>
+        <input type="number" id="editBudgetLimit" placeholder="0.00" min="0" step="0.01">
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeEditBudgetModal()">Cancel</button>
+        <button class="btn-primary" onclick="saveBudgetEdit()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Budget Modal -->
+  <div id="deleteBudgetModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Delete Budget</h2>
+        <button class="close-btn" onclick="closeDeleteBudgetModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this budget? This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeDeleteBudgetModal()">Cancel</button>
+        <button class="btn-danger" onclick="confirmDeleteBudget()">Delete Budget</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
