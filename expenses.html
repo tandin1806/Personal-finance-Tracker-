@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expenses | Personal Finance Tracker</title>
+  <link rel="stylesheet" href="expenses.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="logo-section">
+      <img src="logo.jpg" alt="Logo" class="logo">
+      <span class="logo-text">Personal Finance Tracker</span>
+    </div>
+
+    <nav class="nav">
+      <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="expenses.html" class="active"><i class="fas fa-wallet"></i> Expenses</a>
+      <a href="income.html"><i class="fas fa-piggy-bank"></i> Income</a>
+      <a href="budget.html"><i class="fas fa-chart-line"></i> Budget</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+      <a href="#" id="logoutBtn" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <div class="top-bar">
+      <i class="fas fa-bars menu-icon" onclick="toggleSidebar()"></i>
+      <h1>Expenses</h1>
+    </div>
+
+    <div class="content">
+      <!-- Form Box -->
+      <div class="form-box">
+        <h2>ADD EXPENSE</h2>
+        <label>Category</label>
+        <input type="text" id="category" readonly onclick="openCategoryPopup()" />
+        <label>Amount</label>
+        <input type="number" id="amount" />
+        <label>Date</label>
+        <input type="date" id="date" />
+        <label>Notes</label>
+        <textarea id="notes"></textarea>
+        <button id="addBtn" onclick="addExpense()">ADD</button>
+        <button id="updateBtn" style="display:none" onclick="updateExpense()">UPDATE</button>
+      </div>
+
+      <!-- List Box - Removed container styling -->
+      <div class="list-section">
+        <div class="month-nav">
+          <i class="fa fa-chevron-left" onclick="prevMonth()"></i>
+          <span id="month-display"></span>
+          <i class="fa fa-chevron-right" onclick="nextMonth()"></i>
+        </div>
+        <div class="total-area">
+          <span id="count">Transactions: 0</span>
+          <span id="total">Total: Nu.0</span>
+        </div>
+        <table id="transaction-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th class="action">Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY POPUP - Updated Design -->
+  <div id="categoryPopup" class="popup">
+    <div class="category-popup">
+      <div class="popup-header">
+        <h2>SELECT CATEGORY</h2>
+        <i class="fas fa-times close-btn" onclick="closePopup()"></i>
+      </div>
+      <div class="search-section">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchCategory" placeholder="Search categories..." onkeyup="filterCategory()">
+      </div>
+      <div class="categories-list">
+        <ul id="categoryList"></ul>
+      </div>
+      <div class="add-custom-section">
+        <input type="text" id="newCategory" placeholder="Add new category">
+        <button class="add-custom-btn" onclick="addCustomCategory()">
+          <i class="fas fa-plus"></i> Add
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRM -->
+  <div id="confirmPopup" class="popup">
+    <div class="popup-content small">
+      <p>Are you sure you want to delete?</p>
+      <div class="buttons">
+        <button onclick="confirmDelete(true)">Yes</button>
+        <button onclick="confirmDelete(false)">No</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="expenses.js"></script>
+</body>
+</html>
