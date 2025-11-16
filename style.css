@@ -1,0 +1,464 @@
+/* ===== GLOBAL RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body.landing-page {
+  background: #fff;
+  color: #080808;
+}
+
+/* ===== HEADER ===== */
+.landing-page #header {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.landing-page nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #2A7C76;
+  padding: 15px 10%;
+  width: 100%;
+}
+
+.landing-page .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.landing-page .logo {
+  width: 55px;
+  border-radius: 50%;
+}
+
+.landing-page .title {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 12px;
+}
+
+.landing-page .nav-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.landing-page .btn {
+  padding: 10px 20px;
+  border: none;
+  background: #fff;
+  color: #2A7C76;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.landing-page .btn:hover {
+  background: #e0f2f1;
+}
+
+/* ===== MAIN SECTION ===== */
+.landing-page .Main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6% 10%;
+  gap: 50px;
+}
+
+.landing-page .Main-text h1 {
+  font-size: 48px;
+  color: #2A7C76;
+  margin-bottom: 20px;
+}
+
+.landing-page .Main-text p {
+  font-size: 18px;
+  margin-bottom: 25px;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+.landing-page .learn-btn {
+  background: #2A7C76;
+  color: white;
+  padding: 14px 26px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.landing-page .learn-btn:hover {
+  background: #1e5c55;
+}
+
+.landing-page .boy-img img {
+  width: 680px;
+  max-width: 100%;
+}
+
+/* ===== FEATURES SECTION ===== */
+.landing-page #features {
+  padding: 80px 10%;
+}
+
+.landing-page .feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  gap: 40px;
+}
+
+.landing-page .feature.reverse {
+  flex-direction: row-reverse;
+}
+
+.landing-page .feature-img img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+}
+
+.landing-page .feature-text {
+  flex: 1;
+}
+
+.landing-page .feature-text h2 {
+  color: #2A7C76;
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.landing-page .feature-text p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ===== ENHANCED MODALS ===== */
+.landing-page .modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s;
+}
+
+.landing-page .modal-content {
+  background: white;
+  margin: 5% auto;
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideDown 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.landing-page .modal-content h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2A7C76;
+  font-size: 24px;
+}
+
+.landing-page .modal-content input {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.landing-page .modal-content input:focus {
+  outline: none;
+  border-color: #2A7C76;
+}
+
+.landing-page .modal-btn {
+  background: #2A7C76;
+  color: white;
+  padding: 14px;
+  border: none;
+  margin-top: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.landing-page .modal-btn:hover {
+  background: #1e5c55;
+}
+
+.landing-page .close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  color: #666;
+}
+
+.landing-page .close:hover {
+  color: #333;
+}
+
+/* ===== AUTHENTICATION STYLES ===== */
+.landing-page .error-message {
+  color: #d32f2f;
+  background-color: #ffebee;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 12px 0;
+  font-size: 14px;
+  text-align: left;
+  border-left: 4px solid #d32f2f;
+}
+
+.landing-page .success-message {
+  color: #388e3c;
+  background-color: #e8f5e9;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 12px 0;
+  font-size: 14px;
+  text-align: left;
+  border-left: 4px solid #388e3c;
+}
+
+.landing-page .password-requirements {
+  text-align: left;
+  margin: 15px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  font-size: 13px;
+  border: 1px solid #e9ecef;
+}
+
+.landing-page .password-requirements p {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #495057;
+}
+
+.landing-page .password-requirements ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.landing-page .password-requirements li {
+  margin: 5px 0;
+  padding-left: 20px;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.landing-page .password-requirements li:before {
+  content: "●";
+  position: absolute;
+  left: 0;
+  color: #6c757d;
+}
+
+.landing-page .password-requirements li.valid {
+  color: #2A7C76;
+}
+
+.landing-page .password-requirements li.valid:before {
+  color: #2A7C76;
+}
+
+.landing-page .password-requirements li.invalid {
+  color: #dc3545;
+}
+
+.landing-page .password-requirements li.invalid:before {
+  color: #dc3545;
+}
+
+.landing-page .forgot-link {
+  color: #2A7C76;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.landing-page .forgot-link:hover {
+  text-decoration: underline;
+}
+
+.landing-page .modal-content p {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
+
+.landing-page .modal-content a {
+  color: #2A7C76;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.landing-page .modal-content a:hover {
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .landing-page .Main {
+    flex-direction: column;
+    text-align: center;
+    padding: 8% 5%;
+  }
+
+  .landing-page .Main-text h1 {
+    font-size: 40px;
+  }
+
+  .landing-page .Main-text p {
+    font-size: 17px;
+    margin: 0 auto 25px;
+  }
+
+  .landing-page .boy-img img {
+    width: 90%;
+    max-width: 450px;
+  }
+
+  .landing-page nav {
+    flex-wrap: wrap;
+    padding: 12px 6%;
+  }
+
+  .landing-page .nav-buttons {
+    gap: 8px;
+  }
+
+  .landing-page .btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .landing-page #features {
+    padding: 60px 8%;
+  }
+
+  .landing-page .feature {
+    gap: 30px;
+  }
+
+  .landing-page .feature-text h2 {
+    font-size: 24px;
+  }
+  
+  .landing-page .modal-content {
+    margin: 10% auto;
+    padding: 25px;
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-page .modal-content {
+    margin: 5% auto;
+    padding: 20px;
+  }
+  
+  .landing-page .modal-content h2 {
+    font-size: 20px;
+  }
+  
+  .landing-page .modal-content input {
+    padding: 12px;
+  }
+}
+
+/* ===== SIMPLE PROFESSIONAL FOOTER ===== */
+.landing-page footer,
+.dashboard-footer {
+    background: #2A7C76;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 60px;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-content h3 {
+    color: #e0f2f1;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.footer-item {
+    color: #b2dfdb;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: #b2dfdb;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .footer-item {
+        font-size: 13px;
+    }
+}
