@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile - Personal Finance Tracker</title>
+
+  <!-- Bootstrap CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="profile.css" />
+</head>
+<body>
+
+  <!-- Mobile Menu Toggle -->
+  <button class="menu-toggle" id="menuToggle">
+    <i class="bi bi-list"></i>
+  </button>
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo-section">
+      <img src="logo.jpg" alt="Logo" class="logo">
+      <span class="logo-text">Personal Finance Tracker</span>
+    </div>
+
+    <nav class="nav flex-column mt-4 w-100">
+      <a href="dashboard.html" class="nav-item"><i class="bi bi-house"></i><span>Dashboard</span></a>
+      <a href="#" id="edit-profile-link" class="nav-item"><i class="bi bi-pencil-square"></i><span>Edit Profile</span></a>
+      <a href="#" id="achievement-link" class="nav-item"><i class="bi bi-award"></i><span>Achievements</span></a>
+      <a href="#" class="nav-item" id="security-link"><i class="bi bi-lock"></i><span>Security</span></a>
+    </nav>
+
+    <div class="logout">
+      <a href="#" id="logout-btn" class="nav-item"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a>
+    </div>
+  </aside>
+
+  <!-- Rest of your HTML content remains the same -->
+  <main class="content">
+    <!-- ... your existing content ... -->
+  </main>
+
+  <!-- ... your existing modals and scripts ... -->
+</body>
+</html>
+
+  <!-- Main Content -->
+  <main class="content">
+    <h2 class="text-center mb-4">Profile</h2>
+
+    <!-- Profile View -->
+     <section id="profile-view-section">
+      <div class="profile-pic-container">
+        
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+          class="profile-pic"
+          alt="Profile Picture"
+          id="main-profile-pic">
+
+        <!-- Camera Icon positioned below the shadow silhouette -->
+        <div class="camera-icon-container">
+          <div class="camera-icon" id="cameraIconView">
+            <i class="bi bi-camera-fill"></i>
+          </div>
+        </div>
+
+        <!-- Popup Menu -->
+        <div class="profile-options" id="profileOptionsView">
+          <button id="changePicView">Change Photo</button>
+          <button id="removePicView">Remove Photo</button>
+        </div>
+
+        <input type="file" id="profileInputView" accept="image/*" hidden>
+      </div>
+
+      <h4 class="mb-3">Welcome Back, <span id="view-name">User</span>!</h4>
+
+      <div class="profile-info">
+        <p><strong>Full Name:</strong> <span id="view-fullname">John Doe</span></p>
+        <p><strong>Phone Number:</strong> <span id="view-phone">+1234567890</span></p>
+        <p><strong>Email:</strong> <span id="view-email">john@example.com</span></p>
+        <p><strong>Address:</strong> <span id="view-address">123 Main Street</span></p>
+        <p><strong>Occupation:</strong> <span id="view-occupation">Student</span></p>
+        <p><strong>Bio:</strong> <span id="view-bio">Short bio about me.</span></p>
+      </div>
+
+      <div class="text-center mt-3">
+        <button id="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
+      </div>
+    </section>
+
+    <!-- Edit Profile Section -->
+    <section id="profile-section" style="display:none;">
+      <div class="profile-box">
+        
+        <div class="profile-pic-container">
+          
+          <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+               class="profile-pic profile-pic-edit"
+               alt="Profile Picture"
+               id="edit-profile-pic">
+
+          <!-- Camera Icon positioned below the shadow silhouette -->
+          <div class="camera-icon-container">
+            <div class="camera-icon" id="cameraIconEdit">
+              <i class="bi bi-camera-fill"></i>
+            </div>
+          </div>
+
+          <!-- Popup Menu -->
+          <div class="profile-options" id="profileOptionsEdit">
+            <button id="changePicEdit">Change Photo</button>
+            <button id="removePicEdit">Remove Photo</button>
+          </div>
+
+          <input type="file" id="profileInputEdit" accept="image/*" hidden>
+      </div>
+
+        <h4 class="mb-4">Edit Your Profile</h4>
+    
+        <form id="profile-form">
+          <div class="mb-3">
+            <input type="text" id="name" placeholder="Full Name" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <input type="text" id="phone" placeholder="Phone Number" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <input type="email" id="email" placeholder="Email Address" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <input type="password" id="password" placeholder="Password" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <input type="text" id="address" placeholder="Address" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <select id="occupation" class="form-select">
+              <option value="">Select Occupation</option>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="employee">Employee</option>
+              <option value="business">Business Owner</option>
+              <option value="freelancer">Freelancer</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <textarea id="bio" rows="3" placeholder="Write something about yourself..." class="form-control"></textarea>
+          </div>
+    
+          <div class="d-flex justify-content-between mt-4">
+            <button type="button" id="cancel-edit-btn" class="btn btn-outline-secondary btn-lg">Cancel</button>
+            <button type="button" id="update-btn" class="btn btn-success btn-lg">Update</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievement-section" style="display:none;">
+      <h3 class="text-center mb-4">Achievements</h3>
+      <div class="row justify-content-center g-4">
+        <div class="col-md-4">
+          <div class="achievement-card" data-achievement="budgetMaster">
+            <h5>Budget Master 🏆</h5>
+            <p>Created your first budget</p>
+            <small class="achievement-status">Locked</small>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="achievement-card" data-achievement="savingsHero">
+            <h5>Savings Hero 💰</h5>
+            <p>Saved over Nu. 1000</p>
+            <small class="achievement-status">Locked</small>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="achievement-card" data-achievement="goalSetter">
+            <h5>Goal Setter 🌟</h5>
+            <p>Made 5 transactions</p>
+            <small class="achievement-status">Locked</small>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <button id="back-btn" class="btn btn-outline-dark">Back to Profile</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Security Modal -->
+  <div class="modal fade" id="securityModal" tabindex="-1" aria-labelledby="securityModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="securityModalLabel">Security Settings</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Change Password -->
+          <div class="security-section mb-4">
+            <h5 class="mb-3">Change Password</h5>
+            <form id="change-password-form">
+              <div class="mb-3">
+                <label class="form-label">Current Password</label>
+                <input type="password" class="form-control" id="current-password" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">New Password</label>
+                <input type="password" class="form-control" id="new-password" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Confirm New Password</label>
+                <input type="password" class="form-control" id="confirm-password" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Update Password</button>
+            </form>
+          </div>
+
+          <!-- Two-Factor Authentication -->
+          <div class="security-section mb-4">
+            <h5 class="mb-3">Two-Factor Authentication</h5>
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" type="checkbox" id="2fa-toggle">
+              <label class="form-check-label" for="2fa-toggle">Enable Two-Factor Authentication</label>
+            </div>
+            <div id="2fa-setup" style="display: none;">
+              <p class="text-muted mb-3">Scan this QR code with your authenticator app:</p>
+              <div id="qrcode" class="text-center mb-3 p-3 bg-light rounded"></div>
+              <div class="mb-3">
+                <label class="form-label">Enter verification code</label>
+                <input type="text" class="form-control" id="verification-code" placeholder="Enter 6-digit code" maxlength="6">
+              </div>
+              <button class="btn btn-success" id="verify-2fa">Verify & Enable</button>
+            </div>
+          </div>
+
+          <!-- Login History -->
+          <div class="security-section mb-4">
+            <h5 class="mb-3">Login History</h5>
+            <div id="login-history">
+              <div class="login-session mb-3">
+                <strong>Current Session</strong>
+                <p class="mb-1">Device: Chrome on Windows</p>
+                <p class="mb-1">Location: New York, USA</p>
+                <small class="text-muted">Active now</small>
+              </div>
+              <div class="login-session">
+                <strong>Previous Session</strong>
+                <p class="mb-1">Device: Safari on iPhone</p>
+                <p class="mb-1">Location: New York, USA</p>
+                <small class="text-muted">2 hours ago</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Privacy Settings -->
+          <div class="security-section">
+            <h5 class="mb-3">Privacy Settings</h5>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="profile-visible">
+              <label class="form-check-label" for="profile-visible">Make profile visible to other users</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="email-visible">
+              <label class="form-check-label" for="email-visible">Show email in profile</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="activity-visible">
+              <label class="form-check-label" for="activity-visible">Show financial activity statistics</label>
+            </div>
+            <button class="btn btn-primary mt-2" id="save-privacy">Save Privacy Settings</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Achievement Modal -->
+  <div class="modal fade" id="achievementModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">Achievement Unlocked!</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="achievementModalBody"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Awesome!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout Confirmation Modal -->
+  <div class="modal fade" id="logoutConfirmModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-warning text-dark">
+          <h5 class="modal-title">Confirm Logout</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">Are you sure you want to logout?</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" id="confirm-logout-btn" class="btn btn-danger">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confetti Container -->
+  <div id="confetti-container"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="profile.js"></script>
+</body>
+</html>

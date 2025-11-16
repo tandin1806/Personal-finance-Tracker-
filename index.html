@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Finance Tracker | Landing Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="landing-page">
+
+  <!-- ===== HEADER ===== -->
+  <section id="header">
+    <nav>
+      <div class="logo-container">
+        <img src="logo.jpg" alt="Logo" class="logo">
+        <span class="title">Personal Finance Tracker</span>
+      </div>
+      <div class="nav-buttons">
+        <button class="btn" onclick="openModal('loginModal')">Login</button>
+        <button class="btn" onclick="openModal('signupModal')">Sign Up</button>
+      </div>
+    </nav>
+
+    <div class="Main">
+      <div class="Main-text">
+        <h1>Manage Your Finances Smartly</h1>
+        <p>
+          Keep track of your income, expenses, and budget all in one place.
+          Simple, secure, and designed for you.
+        </p>
+        <button class="learn-btn" onclick="scrollToFeatures()">Learn More</button>
+      </div>
+      <div class="boy-img">
+        <img src="boy.webp" alt="Finance Illustration" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section id="features">
+    <div class="feature">
+      <div class="feature-text">
+        <h2>💰 Track Your Income</h2>
+        <p>Monitor your daily, weekly, and monthly income with ease and clarity.</p>
+      </div>
+      <div class="feature-img">
+        <img src="income.image.png" alt="Track Income" />
+      </div>
+    </div>
+
+    <div class="feature reverse">
+      <div class="feature-text">
+        <h2>💸 Manage Expenses</h2>
+        <p>Organize your spending categories to see where your money goes.</p>
+      </div>
+      <div class="feature-img">
+        <img src="expenses.image.png" alt="Manage Expenses" />
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-text">
+        <h2>📊 Budget Wisely</h2>
+        <p>Set financial goals and track your progress effortlessly with visual insights.</p>
+      </div>
+      <div class="feature-img">
+        <img src="budget.image.png" alt="Budget Wisely" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOGIN MODAL ===== -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('loginModal')">&times;</span>
+      <h2>Login to Your Account</h2>
+      <form id="loginForm">
+        <input type="email" id="login-email" placeholder="Email" required />
+        <input type="password" id="login-password" placeholder="Password" required />
+        <div id="login-error" class="error-message" style="display: none;"></div>
+        <div style="margin-top:8px; text-align:left;">
+          <a href="#" onclick="switchToForgotPassword()" class="forgot-link">Forgot password?</a>
+        </div>
+        <button type="submit" class="modal-btn">Login</button>
+      </form>
+      <p style="margin-top: 15px; text-align: center;">
+        Don't have an account? <a href="#" onclick="switchToSignup()">Sign up here</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== SIGNUP MODAL ===== -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('signupModal')">&times;</span>
+      <h2>Create Your Account</h2>
+      <form id="signupForm">
+        <input type="text" id="signup-name" placeholder="Full Name" required />
+        <input type="email" id="signup-email" placeholder="Email" required />
+        <input type="password" id="signup-password" placeholder="Password" required />
+        <div id="password-requirements" class="password-requirements">
+          <p>Password must contain:</p>
+          <ul>
+            <li id="req-length">At least 8 characters</li>
+            <li id="req-uppercase">One uppercase letter</li>
+            <li id="req-lowercase">One lowercase letter</li>
+            <li id="req-number">One number</li>
+            <li id="req-special">One special character</li>
+          </ul>
+        </div>
+        <div id="signup-error" class="error-message" style="display: none;"></div>
+        <button type="submit" class="modal-btn">Create Account</button>
+      </form>
+      <p style="margin-top: 15px; text-align: center;">
+        Already have an account? <a href="#" onclick="switchToLogin()">Login here</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== FORGOT PASSWORD MODAL ===== -->
+  <div id="forgotModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('forgotModal')">&times;</span>
+      <h2>Reset Password</h2>
+      <p>Enter your account email and we'll send a password reset link.</p>
+      <form id="forgotForm">
+        <input type="email" id="forgot-email" placeholder="Email" required />
+        <div id="forgot-error" class="error-message" style="display: none;"></div>
+        <div id="forgot-success" class="success-message" style="display: none;"></div>
+        <button type="submit" class="modal-btn">Send Reset Link</button>
+      </form>
+      <p style="margin-top: 15px; text-align: center;">
+        Remember your password? <a href="#" onclick="switchToLogin()">Login here</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="api.js"></script>
+  <script src="script.js"></script>
+
+  <!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-content">
+      <h3>Personal Finance Tracker</h3>
+      <div class="footer-info">
+          <div class="footer-item">📞 +975 17770909</div>
+          <div class="footer-item">📧 lalbdr@gmail.com</div>
+          <div class="footer-item">📍 Samtse College of Education</div>
+      </div>
+      <div class="footer-bottom">
+          <p>&copy; 2025 Personal Finance Tracker. All rights reserved.</p>
+      </div>
+  </div>
+</footer>
+</body>
+</html>

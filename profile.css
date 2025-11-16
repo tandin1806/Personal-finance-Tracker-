@@ -1,0 +1,537 @@
+body {
+  background-color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #2A7C76;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.menu-toggle:hover {
+  background: #1f5c57;
+}
+
+/* Mobile Overlay */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+.mobile-overlay.show {
+  display: block;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 230px;
+  background-color: #D9D9D9;
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.logo { 
+  width: 42px; 
+  height: 42px; 
+  border-radius: 50%; 
+  object-fit: cover;
+}
+.logo-text { 
+  font-weight: bold; 
+  font-size: 18px; 
+  color: #333;
+}
+
+.nav-item {
+  color: #000;
+  display: flex;
+  align-items: center;
+  padding: 12px 25px;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+.nav-item i { 
+  margin-right: 10px; 
+  font-size: 1.2rem; 
+  width: 20px;
+  text-align: center;
+}
+.nav-item:hover { 
+  background-color: #fceaea; 
+  border-left: 4px solid #c94c4c; 
+}
+
+.logout { 
+  text-align: center; 
+  padding: 15px 0;
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+}
+
+.content { 
+  margin-left: 230px; 
+  padding: 50px; 
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+/* Profile Picture - Shadow Style */
+.profile-pic-container {
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #2A7C76;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow: 5px 5px 15px #d9d9d9, 
+              -5px -5px 15px #ffffff;
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+  box-shadow: 8px 8px 20px #d9d9d9, 
+              -8px -8px 20px #ffffff;
+}
+
+.profile-pic-edit {
+  width: 150px;
+  height: 150px;
+}
+
+/* Camera Icon Container - positioned below the profile picture */
+.camera-icon-container {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* Camera Icon */
+.camera-icon {
+  background: #2A7C76;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  border: 3px solid white;
+}
+
+.camera-icon:hover {
+  background: #1f5c57;
+  transform: scale(1.1);
+}
+
+.camera-icon i {
+  font-size: 18px;
+}
+
+/* Popup Options Menu */
+.profile-options {
+  position: absolute;
+  bottom: -85px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 12px;
+  padding: 12px 0;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  width: 160px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  z-index: 20;
+}
+
+.profile-options button {
+  background: none;
+  border: none;
+  padding: 10px 15px;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.profile-options button:hover {
+  background: #f2f2f2;
+}
+
+/* Profile View Section */
+#profile-view-section {
+  text-align: center;
+  background: linear-gradient(135deg, #ffe0e6, #fff1f3);
+  padding: 40px;
+  border-radius: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.profile-info {
+  text-align: left;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.profile-info p {
+  margin-bottom: 15px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Edit Profile Box */
+.profile-box {
+  background: linear-gradient(135deg, #ffe0e6, #fff1f3);
+  padding: 40px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 550px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.profile-box:hover {
+  transform: translateY(-5px);
+}
+
+.profile-box input,
+.profile-box select,
+.profile-box textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.profile-box input:focus,
+.profile-box select:focus,
+.profile-box textarea:focus {
+  border-color: #ff6f91;
+  box-shadow: 0 0 8px rgba(255,111,145,0.3);
+  outline: none;
+}
+
+.profile-box button {
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* Buttons in Edit Profile */
+.profile-box .btn-success {
+  background-color: #2A7C76; 
+  border: none;
+}
+
+.profile-box .btn-success:hover {
+  background-color: #2A7C76; 
+}
+
+.profile-box .btn-outline-secondary {
+  border: 2px solid #2A7C76;
+  color: #2A7C76;
+}
+
+.profile-box .btn-outline-secondary:hover {
+  background-color: #2A7C76;
+  color: #fff;
+}
+
+/* Achievements */
+.achievement-card { 
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef); 
+  padding: 25px; 
+  border-radius: 15px; 
+  text-align: center; 
+  cursor: pointer; 
+  transition: transform 0.2s; 
+  height: 100%;
+  border: 2px solid #dee2e6;
+}
+.achievement-card:hover { transform: translateY(-5px); }
+.achievement-card.unlocked {
+  background: linear-gradient(135deg, #ffc0cb, #ffd700);
+  border-color: #ffd700;
+}
+.achievement-status {
+  color: #6c757d;
+  font-style: italic;
+}
+.achievement-card.unlocked .achievement-status {
+  color: #28a745;
+  font-weight: bold;
+}
+
+/* Security Modal Styles */
+.security-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 4px solid #2A7C76;
+}
+
+.login-session {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #dee2e6;
+}
+
+#qrcode {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  border: 1px solid #dee2e6;
+}
+
+/* File Input for Profile Picture */
+.profile-pic-input {
+  display: none;
+}
+
+.profile-pic-label {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+.profile-pic-label::after {
+  content: '📷';
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #2A7C76;
+  color: white;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: 3px solid white;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Confetti */
+@keyframes fall { 
+  0%{transform:translateY(-10px) rotate(0deg);opacity:1}
+  100%{transform:translateY(100vh) rotate(360deg);opacity:0} 
+}
+.confetti-piece { 
+  position: fixed; 
+  top: -20px; 
+  font-size:24px; 
+  animation: fall 3s linear forwards; 
+  pointer-events:none; 
+  user-select:none; 
+  z-index: 1000;
+}
+
+/* Achievement Unlocked Animation */
+.achievement-unlocked {
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 20%, 60%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-20px);}
+  80% {transform: translateY(-10px);}
+}
+
+/* No Profile Visual */
+.no-profile {
+  filter: grayscale(1) brightness(0.9);
+  opacity: 0.9;
+  box-shadow: inset 0 0 0 3px rgba(0,0,0,0.03), 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .menu-toggle {
+    display: block;
+  }
+  
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  
+  .content {
+    margin-left: 0;
+    padding: 70px 25px 25px 25px;
+  }
+  
+  .nav-item span {
+    display: inline;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 70px 20px 20px 20px;
+  }
+  
+  .profile-box, #profile-view-section {
+    width: 100%; 
+    padding: 25px;
+  }
+  
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .camera-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .camera-icon i {
+    font-size: 16px;
+  }
+  
+  .sidebar {
+    width: 250px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 70px 15px 15px 15px;
+  }
+  
+  .profile-box, #profile-view-section {
+    padding: 20px;
+  }
+  
+  .profile-box button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .confetti-piece {
+    font-size: 20px;
+  }
+  
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .camera-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .camera-icon i {
+    font-size: 14px;
+  }
+  
+  .sidebar {
+    width: 220px;
+  }
+  
+  .logo-text {
+    font-size: 16px;
+  }
+  
+  .nav-item {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  .nav-item i {
+    font-size: 1rem;
+    margin-right: 8px;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  h4 {
+    font-size: 1.1rem;
+  }
+}
